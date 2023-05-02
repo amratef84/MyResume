@@ -1,0 +1,17 @@
+﻿@page
+@{
+    ViewData["Title"] = "Certificates";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Certificates</h2>
+
+@(Html.DevExtreme().DataGrid<Core.Entities.Certificates>()
+     .AutoConfigDataGrid("Certificates")
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.Name);
+        columns.AddFor(m => m.ProfileId);
+    })
+)

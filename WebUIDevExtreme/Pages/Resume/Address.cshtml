@@ -1,0 +1,30 @@
+﻿@page
+@using Core.Entities
+@{
+    ViewData["Title"] = "Address";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Address</h2>
+
+@(Html.DevExtreme().DataGrid<Address>()      
+
+    .Columns(columns => {
+
+       // columns.AddFor(m => m.Id).Visible(false);
+
+        columns.AddFor(m => m.Street);
+
+        columns.AddFor(m => m.City);
+
+        columns.AddFor(m => m.PostalCode);
+
+        columns.AddFor(m => m.State);
+
+        columns.AddFor(m => m.Country);
+
+        columns.AddFor(m => m.StartPhoneCountry);
+    })
+    .AutoConfigDataGrid("Addresses")
+   
+)

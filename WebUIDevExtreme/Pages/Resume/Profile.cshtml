@@ -1,0 +1,36 @@
+﻿@page
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Profile</h2>
+
+@(Html.DevExtreme().DataGrid<Core.Entities.Profile>()
+     .AutoConfigDataGrid("Profile")
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.FristName);
+
+        columns.AddFor(m => m.LastName);
+
+        columns.AddFor(m => m.Description);
+
+        columns.AddFor(m => m.Email);
+
+        columns.AddFor(m => m.Nationality);
+
+        columns.AddFor(m => m.BirthDate);
+
+        columns.AddFor(m => m.AboutMe);
+
+        columns.AddFor(m => m.Facebook);
+
+        columns.AddFor(m => m.GitHub);
+
+        columns.AddFor(m => m.LinkedIn);
+
+        columns.AddFor(m => m.Twitter);
+    })
+)
