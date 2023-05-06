@@ -12,15 +12,15 @@ builder.Services
 
 builder.Services.AddRazorPages();
 
-//builder.Services.AddControllers();
+builder.Services.AddControllers();
 //builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyResumeDB"));
 });
+builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
 var app = builder.Build();
 
@@ -38,5 +38,9 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+     endpoints.MapRazorPages();
+});
 app.Run();

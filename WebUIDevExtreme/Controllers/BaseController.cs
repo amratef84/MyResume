@@ -1,15 +1,17 @@
-﻿using Core.InterFace;
+﻿using Core.Entities;
+using Core.InterFace;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WebUIDevExtreme.Controllers
 {
     //[ApiController]
-    // [Route("[controller]")]
-    [Route("api/[controller]/[action]")]
+    //[Route("[controller]")]
+    [Route("api/[controller]")]
     public class BaseController<TEntity> : Controller where TEntity : class
     {
         private readonly IUnitOfWork<TEntity> _context;
@@ -24,34 +26,46 @@ namespace WebUIDevExtreme.Controllers
         [HttpGet]
         public virtual async Task<IActionResult> Get(DataSourceLoadOptionsBase loadOptions)
         {
-             var data =  await _dbSet.GetAll();
-            //loadOptions.
-            // load
-           return Ok(DataSourceLoader.Load(data, loadOptions));
-           // return Ok(data);
+            var data = await _dbSet.GetAll();
+            return Ok(DataSourceLoader.Load(data, loadOptions));
         }
+        //[HttpGet]
+        //public virtual async Task<IActionResult> Get()
+        //{
+        //    var data = await _dbSet.GetAll();
+        //    return Ok(data);
+        //}
 
-        [HttpGet("{id}")]
-        public virtual async Task<IActionResult> GetById(Guid id)
+        [HttpGet("{Id}")]
+        public virtual async Task<IActionResult> GetById(Guid Id)
         {
-            var entity = await _dbSet.GetById(id);
+            var entity = await _dbSet.GetById(Id);
             if (entity == null)
             {
                 return NotFound();
             }
             return Ok(entity);
         }
-
         [HttpPost]
-        public virtual async Task<IActionResult> Insert(TEntity entity)
+        //public IActionResult Post(string entity)
+        //{
+        //    //var newEmployee = new Employee();
+        //    //JsonConvert.PopulateObject(values, newEmployee);
+
+        //    //if (!TryValidateModel(newEmployee))
+        //    //    return BadRequest();
+
+        //    //_data.Employees.Add(newEmployee);
+        //    //_data.SaveChanges();
+
+        //    return Ok();
+        //}
+        [HttpPost]
+        public virtual async Task<IActionResult> Post(TEntity entity)
         {
-            //TEntity entity1;
-            //entity1.GetType().TypeHandle.
-           // JsonConvert.PopulateObject(entity, TEntity);
             await _dbSet.Add(entity);
-             _context.Save();
+            _context.Save();
             return Ok(entity);
-            //return CreatedAtAction(nameof(GetById), new { id = entity.Id }, entity);
         }
 
         [HttpPut("{id}")]
