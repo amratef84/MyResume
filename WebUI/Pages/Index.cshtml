@@ -58,7 +58,7 @@
                             <div class="subheading mb-3">@item.Company</div>
                             <p>@item.Details</p>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">@item.FromDate.Value.ToShortDateString() - @item.ToDate.Value.ToShortDateString()</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">@item.FromDate?.ToShortDateString() - @item.ToDate?.ToShortDateString()</span></div>
                     </div>
                    
                }
