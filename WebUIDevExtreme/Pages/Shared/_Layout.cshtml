@@ -116,6 +116,18 @@
                         .Option("path", GetUrl("/Resume/Profile"))
                         .Selected(IsCurrentUrl("/Resume/Profile"));
 
+                    items.Add()
+                        .Text("Experience")
+                        .Icon("info")
+                        .Option("path", GetUrl("/Resume/Experience"))
+                        .Selected(IsCurrentUrl("/Resume/Experience"));
+                        
+                    items.Add()
+                        .Text("Education")
+                        .Icon("info")
+                        .Option("path", GetUrl("/Resume/Education"))
+                        .Selected(IsCurrentUrl("/Resume/Education"));
+
                 })
                 .ExpandEvent(TreeViewExpandEvent.Click)
                 .SelectionMode(NavSelectionMode.Single)

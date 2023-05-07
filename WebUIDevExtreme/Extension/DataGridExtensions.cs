@@ -10,17 +10,11 @@ namespace WebUIDevExtreme.Extension
             dataGridBuilder.DataSource(ds => ds.Mvc()
                                 .Controller(controller)
                                 .LoadAction("Get")
-                                //.InsertAction("Insert")
-                                //.UpdateAction("Update")
-                                //.DeleteAction("Delete")
-                                //.OnInserting("function(values) {  return $.ajax({url: '/api/Addresses',  dataType: 'json',  data: values, type: 'POST'  });}")
-                                //.OnBeforeSend("function(method, ajaxOptions) { ajaxOptions.data = JSON.stringify(ajaxOptions.data);ajaxOptions.contentType = 'application/json';}")
                                 .Key(key)
                             )
                         .ID("grid")
                         .OnRowInserting(@$"function(e) {{ onInsertGrid(e,'{controller}');}}")
-                        //.OnRowInserting("function(e) {{ return $.post('Addresses', JSON.stringify(e.data)); }}")
-                        //.RepaintChangesOnly(true)
+
                         .FilterRow(f => f.Visible(true))
                         .HeaderFilter(f => f.Visible(true))
                         .GroupPanel(p => p.Visible(true))
@@ -42,6 +36,19 @@ namespace WebUIDevExtreme.Extension
                         .AllowAdding(true)
                         .AllowUpdating(true)
                         .AllowDeleting(true)
+                    );
+            return dataGridBuilder;
+        }
+     public static DataGridColumnBuilder<T> AutoConfigLookUp<T>(this DataGridColumnBuilder<T> dataGridBuilder,
+                                                                   string controller, string key = "Id")
+        {
+            dataGridBuilder.Lookup(ds => ds.DataSource(s=>s.Mvc()
+                                .Controller(controller)
+                                .LoadAction("LookUp")
+                                .Key(key)
+                            ).ValueExpr("Id")
+                            .DisplayExpr("Name")
+                        
                     );
             return dataGridBuilder;
         }

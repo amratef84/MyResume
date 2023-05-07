@@ -12,6 +12,6 @@
     .Columns(columns => {
 
         columns.AddFor(m => m.Name);
-        columns.AddFor(m => m.ProfileId);
+        columns.AddFor(m => m.ProfileId).AutoConfigLookUp("Profile");
     })
 )

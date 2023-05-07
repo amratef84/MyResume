@@ -1,0 +1,27 @@
+﻿@page
+@{
+    ViewData["Title"] = "Education";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Education</h2>
+
+@(Html.DevExtreme().DataGrid<Core.Entities.Education>()
+    .AutoConfigDataGrid("Education")
+    .Columns(columns => {
+
+        columns.AddFor(m => m.University);
+
+        columns.AddFor(m => m.Majors);
+
+        columns.AddFor(m => m.GPA);
+
+        columns.AddFor(m => m.DateGraduation);
+
+        columns.AddFor(m => m.DateRegistration);
+
+        columns.AddFor(m => m.File);
+
+        columns.AddFor(m => m.ProfileId).AutoConfigLookUp("Profile");
+    })
+)

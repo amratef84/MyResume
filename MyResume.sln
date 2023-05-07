@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{6A28A8BB-9B60-4DD4-ACC2-C45CC167B729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{6A28A8BB-9B60-4DD4-ACC2-C45CC167B729}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{753BBA5A-897A-4DD2-B2D7-E0C6E2AB0CEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{753BBA5A-897A-4DD2-B2D7-E0C6E2AB0CEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{5314DD22-CFFA-4442-A48D-2710AE58109A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUI", "WebUI\WebUI.csproj", "{5314DD22-CFFA-4442-A48D-2710AE58109A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUIDevExtreme", "WebUIDevExtreme\WebUIDevExtreme.csproj", "{034618EB-479B-436A-AD69-A2608D6A5422}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebUIDevExtreme", "WebUIDevExtreme\WebUIDevExtreme.csproj", "{034618EB-479B-436A-AD69-A2608D6A5422}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{36E87285-5280-4B98-9839-3FDF6A3D5E4E}"
 	ProjectSection(SolutionItems) = preProject

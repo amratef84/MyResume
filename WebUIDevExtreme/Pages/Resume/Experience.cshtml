@@ -1,0 +1,25 @@
+﻿@page
+@{
+    ViewData["Title"] = "Experience";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>Experience</h2>
+
+@(Html.DevExtreme().DataGrid<Core.Entities.Experience>()
+    .AutoConfigDataGrid("Experience")
+    .Columns(columns => {
+
+    columns.AddFor(m => m.Job);
+
+    columns.AddFor(m => m.Company);
+
+    columns.AddFor(m => m.Details);
+
+    columns.AddFor(m => m.FromDate);
+
+    columns.AddFor(m => m.ToDate);
+
+    columns.AddFor(m => m.ProfileId).AutoConfigLookUp("Profile");
+    })
+)
