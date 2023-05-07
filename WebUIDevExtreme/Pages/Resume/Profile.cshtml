@@ -8,7 +8,6 @@
 
 @(Html.DevExtreme().DataGrid<Core.Entities.Profile>()
      .AutoConfigDataGrid("Profile")
-    .RemoteOperations(true)
     .Columns(columns => {
 
         columns.AddFor(m => m.FristName);
@@ -33,6 +32,6 @@
 
         columns.AddFor(m => m.Twitter);
 
-       // columns.AddFor(m => m.AddressId);
+        columns.AddFor(m => m.AddressId).AutoConfigLookUp("Addresses");
     })
 )
