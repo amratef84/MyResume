@@ -62,7 +62,8 @@ namespace Core.Entities
         public IList<Languages> Languages { get; set; } 
         public IList<Certificates> Certificates { get; set; } 
 
-        public Address? Address { get; set; } 
+        public Guid AddressId { get; set; } 
+        public Address Address { get; set; } 
 
     }
     public enum MaritalStatus

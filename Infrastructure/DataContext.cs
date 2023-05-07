@@ -27,6 +27,9 @@ namespace Infrastructure
             modelBuilder.Entity<Education>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Certificates>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
 
+
+            modelBuilder.Entity<Profile>().Navigation(e => e.Address).AutoInclude();
+            modelBuilder.Entity<Profile>().Navigation(e => e.Experience).AutoInclude();
         }
      
         public  DbSet<Profile> Profile { get; set; }

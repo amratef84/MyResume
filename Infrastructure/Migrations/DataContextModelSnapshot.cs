@@ -17,7 +17,7 @@ namespace Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.15")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -47,9 +47,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("PostalCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProfileId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("StartPhoneCountry")
                         .HasColumnType("nvarchar(max)");
 
@@ -69,9 +66,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProfileId")
-                        .IsUnique();
 
                     b.ToTable("Address");
                 });
@@ -327,6 +321,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("AboutMe")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("AddressId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
 
@@ -380,6 +377,8 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddressId");
+
                     b.ToTable("Profile");
                 });
 
@@ -428,17 +427,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProfileId");
 
                     b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("Core.Entities.Address", b =>
-                {
-                    b.HasOne("Core.Entities.Profile", "Profile")
-                        .WithOne("Address")
-                        .HasForeignKey("Core.Entities.Address", "ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("Core.Entities.Certificates", b =>
@@ -496,6 +484,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Profile");
                 });
 
+            modelBuilder.Entity("Core.Entities.Profile", b =>
+                {
+                    b.HasOne("Core.Entities.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+                });
+
             modelBuilder.Entity("Core.Entities.Skills", b =>
                 {
                     b.HasOne("Core.Entities.Profile", "Profile")
@@ -509,8 +508,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Profile", b =>
                 {
-                    b.Navigation("Address");
-
                     b.Navigation("Certificates");
 
                     b.Navigation("Education");

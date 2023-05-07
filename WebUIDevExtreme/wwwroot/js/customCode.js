@@ -6,6 +6,11 @@
     console.log(window);
     console.log(window.URL);
     $.post(window.origin + "/api/" + controller, e.data);
+
+    var grid = $("#grid").dxDataGrid("instance");
+    console.log(grid);
+    grid.addRow(e.data);
+    grid.refresh();
    // var deferred = $.Deferred();
    //return $.ajax({
    //     url: window.origin+"/api/" + controller,

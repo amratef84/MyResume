@@ -24,8 +24,10 @@ namespace WebUI.Pages
         }
         public  Profile GetProfile()
         {
-           var data =  _dbSet.GetAll().Result;
-            return data.LastOrDefault();
+            var data =  _dbSet.GetAll().Result;
+            var profile = data.LastOrDefault();
+           // profile.Address = _dbSet.GetById(profile.AddressId).Result;
+            return profile;
         }
     }
 }

@@ -28,9 +28,9 @@ namespace Core.Entities
         [Display(Name = " رقم بداية الدولة  ")]
         public string? StartPhoneCountry { get; set; }
 
-        [Display(Name = " البروفايل  ")]
-        public Guid ProfileId { get; set; }
-        public Profile Profile { get; set; }
+        //[Display(Name = " البروفايل  ")]
+        //public Guid ProfileId { get; set; }
+        //public Profile Profile { get; set; }
 
     }
 }

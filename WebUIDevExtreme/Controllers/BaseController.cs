@@ -69,20 +69,24 @@ namespace WebUIDevExtreme.Controllers
         }
 
         [HttpPut("{id}")]
-        public virtual async Task<IActionResult> Update(Guid id, TEntity entity)
+        public virtual async Task<IActionResult> Update(Guid id, string entity)
         {
-            //if (id != entity.)
-            //{
-            //    return BadRequest();
-            //}
-            //_context.Entry(entity).State = EntityState.Modified;
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
+            if (entity==null)
+            {
+                return BadRequest();
+            }
+
+            var value =await _dbSet.GetById(id);
+            JsonConvert.PopulateObject(entity, value);
+
+            _dbSet.Update(value);
+
+            //if (!TryValidateModel(order))
+            //    return BadRequest(ModelState.GetFullErrorMessage());
+
             //catch (DbUpdateConcurrencyException)
             //{
-            //    if (!_dbSet.Any(e => e.Id == id))
+            //    if (!_context..(e => e.Id == id))
             //    {
             //        return NotFound();
             //    }
@@ -90,7 +94,20 @@ namespace WebUIDevExtreme.Controllers
             //}
             return NoContent();
         }
+        //[HttpGet]
+        //public Task<IActionResult> Lookup(DataSourceLoadOptions loadOptions)
+        //{
+        //    //var lookup = from i in _nwind.Customers
+        //    //             let text = i.CompanyName + " (" + i.Country + ")"
+        //    //             orderby i.CompanyName
+        //    //             select new
+        //    //             {
+        //    //                 Value = i.CustomerID,
+        //    //                 Text = text
+        //    //             };
 
+        //    return DataSourceLoader.Load(_dbSet.GetAll(), loadOptions);
+        //}
         [HttpDelete("{id}")]
         public virtual async Task<IActionResult> Delete(Guid id)
         {
